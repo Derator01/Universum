@@ -12,7 +12,7 @@
 
             <Label
                 Text="PlaceHolder"
-                x:Name="DebugLbl"/>
+                x:Name="DebugLbl" />
 
         </VerticalStackLayout>
     </ScrollView>

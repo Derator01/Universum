@@ -15,7 +15,7 @@
 		<ApplicationTitle>Universum</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.universum</ApplicationId>
+		<ApplicationId>com.anfavis.universum</ApplicationId>
 		<ApplicationIdGuid>459fd5c5-bb5c-4ecc-88ec-07e45655c28b</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -45,20 +45,6 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Resources\Images\p0.png" />
-	  <None Remove="Resources\Images\p1.png" />
-	  <None Remove="Resources\Images\p10.png" />
-	  <None Remove="Resources\Images\p2.png" />
-	  <None Remove="Resources\Images\p3.png" />
-	  <None Remove="Resources\Images\p4.png" />
-	  <None Remove="Resources\Images\p5.png" />
-	  <None Remove="Resources\Images\p6.png" />
-	  <None Remove="Resources\Images\p7.png" />
-	  <None Remove="Resources\Images\p8.png" />
-	  <None Remove="Resources\Images\p9.png" />
 	</ItemGroup>
 
 	<ItemGroup>
