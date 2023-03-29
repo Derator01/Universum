@@ -4,11 +4,14 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Universum"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Flyout">
 
-    <TabBar>
-        
-        <ShellContent
+    <ShellContent
+            Title="Account"
+        ContentTemplate="{DataTemplate local:AboutPage}"
+            Route="Account" />
+
+    <ShellContent
             Title="Home"
             ContentTemplate="{DataTemplate local:MainPage}"
             Route="MainPage" />
@@ -18,9 +21,9 @@
             ContentTemplate="{DataTemplate local:BooksPage}"
             Route="Books" />
 
-        <Tab
+        <FlyoutItem
             Title="Other"
-            Route="Other">
+            Route="Oth">
 
             <ShellContent
                 Title="Options"
@@ -32,7 +35,6 @@
                 ContentTemplate="{DataTemplate local:AboutPage}"
                 Route="About" />
 
-        </Tab>
-        
-    </TabBar>
+        </FlyoutItem>
+    
 </Shell>
