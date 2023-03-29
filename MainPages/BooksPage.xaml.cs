@@ -1,3 +1,4 @@
+using Universum.Misc;
 #if ANDROID
 using Browser = Android.Provider.Browser;
 #endif
@@ -23,17 +24,26 @@ public partial class BooksPage : ContentPage
     {
         InitializeComponent();
 
-        _recommendedStLayout = File.Exists(Path.Combine(FileSystem.Current.AppDataDirectory, "recommended.sav")) ? Load<HorizontalStackLayout>("recommended.sav") : new();
-        _favoriteStLayout = File.Exists(Path.Combine(FileSystem.Current.AppDataDirectory, "favorite.sav")) ? Load<HorizontalStackLayout>("favorite.sav") : new();
-        _currentStLayout = File.Exists(Path.Combine(FileSystem.Current.AppDataDirectory, "current.sav")) ? Load<HorizontalStackLayout>("current.sav") : new();
+        _recommendedStLayout = new();
+        _favoriteStLayout = new();
+        _currentStLayout = new();
 
-        //int smth = _recommendedStLayout.Count;
+        if (File.Exists(Path.Combine(FileSystem.Current.AppDataDirectory, "recommended.sav")))
+            foreach (var source in Load<IEnumerable<string>>("recommended.sav"))
+                _recommendedStLayout.Add(new PieceButton(source) { MaximumWidthRequest = 500, HeightRequest = 100 });
+        if (File.Exists(Path.Combine(FileSystem.Current.AppDataDirectory, "favorite.sav")))
+            foreach (var source in Load<IEnumerable<string>>("recommended.sav"))
+                _favoriteStLayout.Add(new PieceButton(source) { MaximumWidthRequest = 500, HeightRequest = 100 });
+        if (File.Exists(Path.Combine(FileSystem.Current.AppDataDirectory, "current.sav")))
+            foreach (var source in Load<IEnumerable<string>>("current.sav"))
+                _currentStLayout.Add(new PieceButton(source) { MaximumWidthRequest = 500, HeightRequest = 100 });
+
         for (int i = 0; i < 11; i++)
         {
-            var index = i;
-            _recommendedStLayout.Add(new Image() { Source = $"p{index}.png", MaximumWidthRequest = 500, HeightRequest = 100 });
+            _recommendedStLayout.Add(new BookMovieButton($"p{i}.png") { MaximumWidthRequest = 500, HeightRequest = 100 });
         }
 
+        #region Main part
         MainLayout.Add(new Label() { Text = "Recommendations", Margin = new(10) });
 
         ScrollView recommendedScroll = new() { Orientation = ScrollOrientation.Horizontal, Content = _recommendedStLayout };
@@ -49,8 +59,9 @@ public partial class BooksPage : ContentPage
         ScrollView currentScroll = new() { Orientation = ScrollOrientation.Horizontal, Content = _currentStLayout };
 
         MainLayout.Add(currentScroll);
+        #endregion
 
-        SaveCollection("recommended.sav", _favoriteStLayout);
+        SaveCollection("recommended.sav", _recommendedStLayout.Children.Select(x => ((PieceButton)x).StringSource));
 
         //Unfocused += (s, e) => SaveCollection("recommended.sav", _recommendedStLayout);
     }
