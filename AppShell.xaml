@@ -19,7 +19,8 @@
             Route="Books" />
 
         <Tab
-            Title="Other">
+            Title="Other"
+            Route="Other">
 
             <ShellContent
                 Title="Options"

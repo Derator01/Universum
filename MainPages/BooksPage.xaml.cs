@@ -1,14 +1,10 @@
 using Universum.Misc;
+using System.Text.Json;
 #if ANDROID
 using Browser = Android.Provider.Browser;
-#endif
-
-#if IOS
+#elif IOS
 using Foundation;
 #endif
-
-
-using System.Text.Json;
 
 namespace Universum;
 
