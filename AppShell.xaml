@@ -6,35 +6,41 @@
     xmlns:local="clr-namespace:Universum"
     Shell.FlyoutBehavior="Flyout">
 
-    <ShellContent
-            Title="Account"
-        ContentTemplate="{DataTemplate local:AboutPage}"
-            Route="Account" />
-
-    <ShellContent
+    <FlyoutItem
+        Title="Main">
+        
+        <ShellContent
             Title="Home"
             ContentTemplate="{DataTemplate local:MainPage}"
             Route="MainPage" />
 
         <ShellContent
-            Title="Boobs"
+            Title="Books"
             ContentTemplate="{DataTemplate local:BooksPage}"
-            Route="Books" />
+            Route="Books" 
+            Shell.FlyoutItemIsVisible="False"
+            Shell.NavBarIsVisible="False"/>
 
-        <FlyoutItem
-            Title="Other"
-            Route="Oth">
+        <ShellContent
+            Title="Movies"
+            ContentTemplate="{DataTemplate local:MoviePage}"
+            Route="Movies" />
 
-            <ShellContent
-                Title="Options"
-                ContentTemplate="{DataTemplate local:OptionsPage}"
-                Route="Options" />
+        <ShellContent
+            Title="Account"
+            ContentTemplate="{DataTemplate local:AccountPage}"
+            Route="Account" />
 
-            <ShellContent
-                Title="About"
-                ContentTemplate="{DataTemplate local:AboutPage}"
-                Route="About" />
+    </FlyoutItem>
 
-        </FlyoutItem>
-    
+    <ShellContent
+        Title="Options"
+        ContentTemplate="{DataTemplate local:OptionsPage}"
+        Route="Options" />
+
+    <ShellContent
+        Title="About"
+        ContentTemplate="{DataTemplate local:AboutPage}"
+        Route="About" />
+
 </Shell>

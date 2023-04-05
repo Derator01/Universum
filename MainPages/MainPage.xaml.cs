@@ -3,9 +3,7 @@ using System.Text.Json;
 
 #if ANDROID
 using Browser = Android.Provider.Browser;
-#endif
-
-#if IOS
+#elif IOS
 using Foundation;
 #endif
 
@@ -57,7 +55,7 @@ public partial class MainPage : ContentPage
     //#endif
     //#if IOS
     //        ///Doesn't work
-    ///*
+    //*
     //var userActivity = new NSUserActivity("com.myapp.browsing-history");
     //        if (userActivity.WebpageUrl != null)
     //{
