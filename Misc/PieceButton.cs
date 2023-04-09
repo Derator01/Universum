@@ -7,13 +7,15 @@ class PieceButton : ImageButton, IView, IPiece
     public Piece.PieceType Type { get; }
 
     public string StringSource { get; }
+    public string Description { get; set; }
 
-    public PieceButton(string name, string author, Piece.PieceType type, string source)
+    public PieceButton(string name, string author, Piece.PieceType type, string source, string description = "")
     {
         Name = name;
         Author = author;
         Type = type;
         StringSource = source;
         Source = source;
+        Description = description;
     }
 }
