@@ -43,4 +43,9 @@
         ContentTemplate="{DataTemplate local:AboutPage}"
         Route="About" />
 
+    <ShellContent
+        Title="New Book"
+        ContentTemplate="{DataTemplate local:NewPiecePage}"
+        Route="NewBook" />
+
 </Shell>
