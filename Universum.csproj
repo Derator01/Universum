@@ -83,6 +83,9 @@
 	  <MauiXaml Update="OtherPages\AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="OtherPages\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="OtherPages\NewPiecePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -3,11 +3,15 @@
 public class Piece : IPiece
 {
     public string Name { get; set; }
-    public string Author { get; }
+    public string Authors { get; }
 
     public PieceType Type { get; }
 
+    public int Year { get; }
+
     public string Description { get; set; }
+
+    public string ImageUrl { get; set; }
 
     public enum PieceType
     {
@@ -15,11 +19,13 @@ public class Piece : IPiece
         Movie
     }
 
-    public Piece(string name, string author, PieceType type, string description = "")
+    public Piece(string name, string author, PieceType type, int year, string description = "", string imageUrl = null)
     {
         Name = name;
-        Author = author;
+        Authors = author;
         Type = type;
         Description = description;
+        Year = year;
+        ImageUrl = imageUrl;
     }
 }

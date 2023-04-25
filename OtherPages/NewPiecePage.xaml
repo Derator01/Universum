@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Universum.NewPiecePage"
              Title="New Piece">
+    
     <VerticalStackLayout>
 
         <Entry
@@ -10,20 +11,34 @@
             x:Name="NameEtr"
             Completed="NameEtr_Completed" />
 
+        <Entry
+            Placeholder="Authors"
+            x:Name="AuthorsEtr"
+            Completed="AuthorsEtr_Completed" />
+
         <Button
             Text="Book"
             x:Name="PieceTypeBtn"
             Clicked="PieceTypeBtn_Clicked"
             />
 
+        <DatePicker 
+            Format="yyyy" />
+        
         <Entry 
             Placeholder="Description"
             x:Name="DescriptionEtr"
             Completed="DescriptionEtr_Completed" />
+
+        <Entry
+            Placeholder="Image Url"
+            x:Name="ImageEtr"
+            Completed="ImageEtr_Completed" />
 
         <Button
             Text="Enter"
             Clicked="EnterBtn_Clicked" />
 
     </VerticalStackLayout>
+
 </ContentPage>
