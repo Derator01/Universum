@@ -1,13 +1,12 @@
 using System.Text.Json;
-using System.Text.Json.Nodes;
 
 public static class MLSerializer
 {
-    public static string ConvertJsonToMarkdown(JsonDocument json)
+    static string ConvertJsonToMarkdown(JsonElement jsonElement)
     {
         string markdown = "";
 
-        foreach (JsonProperty property in json.RootElement.EnumerateObject())
+        foreach (JsonProperty property in jsonElement.EnumerateObject())
         {
             string key = property.Name;
             JsonElement value = property.Value;
@@ -16,27 +15,28 @@ public static class MLSerializer
 
             if (value.ValueKind == JsonValueKind.String)
             {
-                markdown += $"{value}\n\n";
+                markdown += $"{value.GetString()}\n\n";
             }
             else if (value.ValueKind == JsonValueKind.Array)
             {
-                JsonArray array = JsonArray.Create(value);
+                JsonElement.ArrayEnumerator array = value.EnumerateArray();
                 markdown += ConvertArrayToMarkdownList(array);
             }
             else if (value.ValueKind == JsonValueKind.Object)
             {
-                markdown += ConvertJsonToMarkdown(JsonDocument.Parse(JsonSerializer.Serialize(value)));
+                markdown += ConvertJsonToMarkdown(value);
             }
         }
 
         return markdown;
     }
 
-    public static string ConvertArrayToMarkdownList(JsonArray array)
+    static string ConvertArrayToMarkdownList(JsonElement.ArrayEnumerator array)
     {
         string markdownList = "";
-        foreach (JsonValue item in array)
+        while (array.MoveNext())
         {
+            JsonElement item = array.Current;
             markdownList += $"- {item}\n";
         }
         markdownList += "\n";
