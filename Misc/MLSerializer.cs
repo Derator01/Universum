@@ -13,18 +13,17 @@ public static class MLSerializer
 
             markdown += $"## {key}\n";
 
-            if (value.ValueKind == JsonValueKind.String)
+            switch (value.ValueKind)
             {
-                markdown += $"{value.GetString()}\n\n";
-            }
-            else if (value.ValueKind == JsonValueKind.Array)
-            {
-                JsonElement.ArrayEnumerator array = value.EnumerateArray();
-                markdown += ConvertArrayToMarkdownList(array);
-            }
-            else if (value.ValueKind == JsonValueKind.Object)
-            {
-                markdown += ConvertJsonToMarkdown(value);
+                case JsonValueKind.String:
+                    markdown += $"{value.GetString()}\n\n";
+                    break;
+                case JsonValueKind.Array:
+                    markdown += ConvertArrayToMarkdownList(value.EnumerateArray());
+                    break;
+                case JsonValueKind.Object:
+                    markdown += ConvertJsonToMarkdown(value);
+                    break;
             }
         }
 
