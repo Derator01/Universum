@@ -1,25 +1,31 @@
-﻿namespace Universum.Misc;
+﻿using System.Text.Json;
+
+namespace Universum.Misc;
 
 class PieceButton : ImageButton, IView, IPiece
 {
     public string Name { get; set; }
-    public string Authors { get; }
-    public Piece.PieceType Type { get; }
 
     public string StringSource { get; }
-    public string Description { get; set; }
 
-    public int Year { get; }
+    public string? ImageUrl { get; set; }
 
-    public string ImageUrl { get; set; }
+    public Piece.PieceType Type { get; }
+    public JsonElement JsonRepresentation { get; set; }
 
-    public PieceButton(string name, string author, Piece.PieceType type, string source, string description = "")
+    public PieceButton(string name, Piece.PieceType type, string source)
     {
         Name = name;
-        Authors = author;
         Type = type;
         StringSource = source;
         Source = source;
-        Description = description;
+    }
+
+    public PieceButton(string source, Piece.PieceType type, JsonElement jsonRepresentation)
+    {
+        Name = jsonRepresentation.GetProperty(nameof(Name)).ToString();
+        StringSource = source;
+        Type = type;
+        JsonRepresentation = jsonRepresentation;
     }
 }

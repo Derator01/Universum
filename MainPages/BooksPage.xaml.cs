@@ -25,17 +25,17 @@ public partial class BooksPage : ContentPage
 
         if (File.Exists(Path.Combine(FileSystem.Current.AppDataDirectory, "recommended.sav")))
             foreach (var source in Load<IEnumerable<string>>("recommended.sav"))
-                _recommendedStLayout.Add(new PieceButton("smth", "Me", Piece.PieceType.Book, source) { MaximumWidthRequest = 500, HeightRequest = 100 });
+                _recommendedStLayout.Add(new PieceButton("Me", Piece.PieceType.Book, source) { MaximumWidthRequest = 500, HeightRequest = 100 });
         if (File.Exists(Path.Combine(FileSystem.Current.AppDataDirectory, "favorite.sav")))
             foreach (var source in Load<IEnumerable<string>>("recommended.sav"))
-                _favoriteStLayout.Add(new PieceButton("smth", "Me", Piece.PieceType.Book, source) { MaximumWidthRequest = 500, HeightRequest = 100 });
+                _favoriteStLayout.Add(new PieceButton("Me", Piece.PieceType.Book, source) { MaximumWidthRequest = 500, HeightRequest = 100 });
         if (File.Exists(Path.Combine(FileSystem.Current.AppDataDirectory, "current.sav")))
             foreach (var source in Load<IEnumerable<string>>("current.sav"))
-                _currentStLayout.Add(new PieceButton("smth", "Me", Piece.PieceType.Book, source) { MaximumWidthRequest = 500, HeightRequest = 100 });
+                _currentStLayout.Add(new PieceButton("Me", Piece.PieceType.Book, source) { MaximumWidthRequest = 500, HeightRequest = 100 });
 
         for (int i = 0; i < 11; i++)
         {
-            _recommendedStLayout.Add(new PieceButton("smth", "Me", Piece.PieceType.Book, $"p{i}.png") { MaximumWidthRequest = 500, HeightRequest = 100 });
+            _recommendedStLayout.Add(new PieceButton("Me", Piece.PieceType.Book, $"p{i}.png") { MaximumWidthRequest = 500, HeightRequest = 100 });
         }
 
         #region Main part

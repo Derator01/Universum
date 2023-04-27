@@ -61,6 +61,6 @@ public partial class NewPiecePage : ContentPage
         _description = DescriptionEtr.Text;
         _imageUrl = ImageEtr.Text;
 
-        Storage.AddPiece(new Piece(_name, _author, _type, _year, _imageUrl, _description));
+        Storage.AddPiece(new Piece(_name, _type));
     }
 }

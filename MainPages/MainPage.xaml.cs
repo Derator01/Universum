@@ -1,5 +1,4 @@
 ﻿using HtmlAgilityPack;
-using System.Text.Json;
 
 #if ANDROID
 using Browser = Android.Provider.Browser;
@@ -11,7 +10,6 @@ namespace Universum;
 
 public partial class MainPage : ContentPage
 {
-    private const string OMDB_API_KEY = "417135a4";
 
     public MainPage()
     {
@@ -182,76 +180,7 @@ public partial class MainPage : ContentPage
     /// <summary>
     /// Checks the book existence through the Google books.
     /// </summary>
-    /// <param name="title">Title of the book</param>
-    /// <returns>Complete match of the <paramref name="title"/> and the response title.</returns>
-    /// <exception cref="Exception">Throws in case there is no book with remotely similar <paramref name="title"/>.</exception>
-    /// <exception cref="HttpRequestException">Throws if there is no Internet access or something along those lines.</exception>
-    private async Task<bool> CheckBookExistenceAsync(string title)
-    {
-        title = title.Trim();
 
-
-        HttpClient client = new();
-        HttpResponseMessage response = await client.GetAsync($"https://www.googleapis.com/books/v1/volumes?q={title}");
-
-        if (response.IsSuccessStatusCode)
-        {
-            string responseBody = await response.Content.ReadAsStringAsync();
-            JsonDocument data = JsonDocument.Parse(responseBody);
-
-            int totalItems = data.RootElement.GetProperty("totalItems").GetInt32();
-
-            if (totalItems > 0)
-            {
-                JsonElement bookInfo = data.RootElement.GetProperty("items")[0].GetProperty("volumeInfo");
-                string webTitle = bookInfo.GetProperty("title").GetString();
-
-                return title.ToLower() == webTitle.Trim().ToLower();
-            }
-            else
-            {
-                throw new Exception("There is no even remotely similar book in database");
-            }
-        }
-        else
-        {
-            throw new HttpRequestException("Something went wrong during web request.", null, response.StatusCode);
-        }
-    }
-
-    /// <summary>
-    /// Checks the movie existence through the OMDB.
-    /// </summary>
-    /// <param name="title">Title of the movie</param>
-    /// <returns>Complete match of the <paramref name="title"/> and the response title.</returns>
-    /// <exception cref="HttpRequestException">Throws if there is no Internet access or something along those lines.</exception>
-    private async Task<bool> CheckMovieExistenceAsync(string title)
-    {
-        title = title.Trim();
-
-        HttpClient client = new();
-        HttpResponseMessage response = await client.GetAsync($"http://www.omdbapi.com/?apikey={OMDB_API_KEY}&t={title}");
-
-        if (response.IsSuccessStatusCode)
-        {
-            string responseBody = await response.Content.ReadAsStringAsync();
-
-            JsonDocument data = JsonDocument.Parse(responseBody);
-
-            if (data.RootElement.GetProperty("Response").GetString() == "True")
-            {
-                return title.ToLower() == data.RootElement.GetProperty("Title").GetString().Trim().ToLower();
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            throw new HttpRequestException("Something went wrong during web request.", null, response.StatusCode);
-        }
-    }
     #endregion
 }
 

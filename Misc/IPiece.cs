@@ -1,14 +1,13 @@
-﻿namespace Universum.Misc;
+﻿using System.Text.Json;
+
+namespace Universum.Misc;
 
 public interface IPiece
 {
     string Name { get; set; }
-    string Authors { get; }
 
+    JsonElement JsonRepresentation { get; set; }
     Piece.PieceType Type { get; }
-    int Year { get; }
-    string Description { get; set; }
-    string ImageUrl { get; set; }
 }
 /* ValueKind = Object : "{
         "title": "Start Something That Matters",
