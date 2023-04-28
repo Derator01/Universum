@@ -10,7 +10,7 @@ public static class WebVerification
     /// <returns>Complete match of the <paramref name="name"/> and the response title.</returns>
     /// <exception cref="Exception">Throws in case there is no book with remotely similar <paramref name="name"/>.</exception>
     /// <exception cref="HttpRequestException">Throws if there is no Internet access or something along those lines.</exception>
-    private static async Task<bool> CheckBookExistenceAsync(string name)
+    public static async Task<bool> CheckBookExistenceAsync(string name)
     {
         name = name.Trim();
 
@@ -48,7 +48,7 @@ public static class WebVerification
     /// <param name="title">Title of the movie</param>
     /// <returns>Complete match of the <paramref name="title"/> and the response title.</returns>
     /// <exception cref="HttpRequestException">Throws if there is no Internet access or something along those lines.</exception>
-    private static async Task<bool> CheckMovieExistenceAsync(string title)
+    public static async Task<bool> CheckMovieExistenceAsync(string title)
     {
         title = title.Trim();
 
@@ -82,7 +82,7 @@ public static class WebVerification
     /// <returns>Book information.</returns>
     /// <exception cref="Exception">You will likely not see this exception ever.</exception>
     /// <exception cref="HttpRequestException">If there is no Internet connection.</exception>
-    private static async Task<JsonElement> TryGetBookAsync(string name)
+    public static async Task<JsonElement> TryGetBookAsync(string name)
     {
         name = name.Trim();
 
@@ -119,7 +119,7 @@ public static class WebVerification
     /// <returns>Movie information.</returns>
     /// <exception cref="Exception">You will likely not see this exception ever.</exception>
     /// <exception cref="HttpRequestException">If there is no Internet connection.</exception>
-    private static async Task<JsonElement> TryGetMovieAsync(string title)
+    public static async Task<JsonElement> TryGetMovieAsync(string title)
     {
         title = title.Trim();
 
