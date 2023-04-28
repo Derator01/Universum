@@ -18,8 +18,6 @@ public static class Storage
 
         StreamWriter streamWriter = new(File.OpenWrite(path));
 
-        //if(piece.JsonRepresentation == default(JsonElement))
-
         streamWriter.Write(piece.JsonRepresentation.ToMarkdown());
         //streamWriter.Flush();
         streamWriter.Close();
