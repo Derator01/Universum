@@ -52,6 +52,7 @@ public partial class NewPiecePage : ContentPage
     private void ImageEtr_Completed(object sender, EventArgs e)
     {
         _imageUrl = ImageEtr.Text;
+        EnterBtn_Clicked(null, null);
     }
 
     private void EnterBtn_Clicked(object sender, EventArgs e)
@@ -60,6 +61,9 @@ public partial class NewPiecePage : ContentPage
         _author = AuthorsEtr.Text;
         _description = DescriptionEtr.Text;
         _imageUrl = ImageEtr.Text;
+
+        if (string.IsNullOrEmpty(_name))
+            return;
 
         Storage.AddPiece(new Piece(_name, _type));
     }

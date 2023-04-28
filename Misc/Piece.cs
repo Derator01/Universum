@@ -35,4 +35,9 @@ public class Piece : IPiece
 
         JsonRepresentation = representation;
     }
+
+    private void UpdateName(string name)
+    {
+        //TODO: Updating
+    }
 }
